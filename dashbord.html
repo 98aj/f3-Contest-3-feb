@@ -36,7 +36,7 @@
 
     
     <div class="regesterForm" >
-        <form class="form1" id="signUp" >
+        <form class="form1" id="dashbord" >
             
     
             <h2 class="Text">Teachers Dashbord</h2>
@@ -50,15 +50,39 @@
             <input type="text" name="name" id="confirmpass" placeholder="Confirm Password" required><span class="formerror"></span><br><br>
 
             <button class="btn btn-dark" type="submit">Change</button>
-            <button class="btn btn-dark">Logout</button>
+            
             
         </form>
+        <button class="btn btn-dark" onclick="myFun()">Logout</button>
         
     </div>
 
 
     <script>
+        let dashbord = document.getElementById('dashbord');
+        let oldpass = document.getElementById('oldpass')
+        let newpass = document.getElementById('newpass')
+        let confirmpass = document.getElementById('confirmpass');
+        let data = localStorage.users;
+      let convData = JSON.parse(data);
 
+        dashbord.addEventListener('submit', ()=>{
+          event.preventDefault();
+          if(oldpass.value!=convData[0].password){
+            console.log('Invalid password');
+          }else if(oldpass.value==convData[0].password && newpass.value==confirmpass.value){
+            convData[0].password = confirmpass.value;
+
+            let newData = JSON.stringify(convData);
+            localStorage.setItem('users', newData);
+          }else{
+          console.log('New password does not match');
+        }
+        })
+
+        function myFun() {
+          window.location.href = './login.html'
+        }
        
     </script>
 </body>
