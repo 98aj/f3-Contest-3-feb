@@ -50,5 +50,26 @@
         
     </div>
 
+    <script>
+      let email1 = document.getElementById('email')
+      let password = document.getElementById('password1')
+      let data = localStorage.users;
+      let convData = JSON.parse(data);
+
+     
+
+      let loginForm = document.getElementById('Login');
+
+      loginForm.addEventListener('submit', ()=>{
+        event.preventDefault();
+        if(convData[0].emailId==email1.value && convData[0].password == password.value){
+          
+        window.location.href = './dashbord.html'
+      }else{
+        console.log('Invalid id or password')
+      }
+      })
+
+    </script>
 </body>
 </html>
